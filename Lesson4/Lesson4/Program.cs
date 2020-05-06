@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net.WebSockets;
 using MenuLib;
 using FC = MenuLib.FastConsole;
 

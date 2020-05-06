@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.WebSockets;
 using MenuLib;
 using FC = MenuLib.FastConsole;
 
@@ -9,7 +10,7 @@ namespace Lesson4
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02 };
+            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02, Task03 };
             Menu menu = new Menu(delMenus);
             menu.ChooseMenu();
         }
@@ -152,6 +153,38 @@ namespace Lesson4
                     str += i + " ";
                 return str;
             }
+        }
+        #endregion
+        #region Задание 3
+        static void Task03()
+        {
+            //Логин пароль
+            int x = 0;
+            do
+            {
+                string login = FC.Input("Введите логин");
+                string password = FC.Input("Введите пароль");
+                if (IsValid(login, password))
+                {
+                    Console.WriteLine("Успех!");
+                    FC.Pause();
+                    return;
+                }
+                Console.WriteLine("Неверный логин или пароль");
+                x++;
+            } while (x != 3);
+            Console.WriteLine("Access Denied");
+            FC.Pause();
+        }
+        static bool IsValid(string login, string password)
+        {
+            StreamReader sr = new StreamReader("access.txt");
+            while (!sr.EndOfStream)
+            {
+                if (sr.ReadLine() == login & sr.ReadLine() == password)
+                    return true;
+            }
+            return false;
         }
         #endregion
     }

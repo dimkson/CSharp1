@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using MenuLib;
 using FC = MenuLib.FastConsole;
 
@@ -8,7 +9,7 @@ namespace Lesson4
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01 };
+            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02 };
             Menu menu = new Menu(delMenus);
             menu.ChooseMenu();
         }
@@ -35,6 +36,122 @@ namespace Lesson4
             }
             Console.WriteLine("\nКоличество пар: " + count);
             FC.Pause();
+        }
+        #endregion
+        #region Задание 2
+        static void Task02()
+        {
+            //Реализовать класс для работы с массивом, реализовать методы и св-ва для работы с массивом.
+            MyArray myArray = new MyArray(10, 2, 3);
+            Console.WriteLine(myArray);
+            Console.WriteLine(myArray.Sum);
+            myArray.Inverse();
+            Console.WriteLine(myArray);
+            myArray.Multi(2);
+            Console.WriteLine(myArray);
+            MyArray myArrayText = new MyArray("test.txt");
+            Console.WriteLine(myArrayText);
+            Console.WriteLine(myArrayText.Max);
+            Console.WriteLine(myArrayText.MaxCount);
+            myArray.Output("test2.txt");
+            FC.Pause();
+        }
+        class MyArray
+        {
+            private int[] arr;
+
+            public MyArray(int size)
+            {
+                arr = new int[size];
+            }
+            public MyArray(int size, int n, int step)
+            {
+                arr = new int[size];
+                for(int i = 0; i < size; i++)
+                {
+                    arr[i] = n;
+                    n += step;
+                }
+            }
+            public MyArray(string path)
+            {
+                try
+                {
+                    StreamReader sr = new StreamReader(path);
+                    int size = int.Parse(sr.ReadLine());
+                    arr = new int[size];
+                    for (int i = 0; i < arr.Length; i++)
+                        arr[i] = int.Parse(sr.ReadLine());
+                    sr.Close();
+                }
+                catch(Exception exc)
+                {
+                    Console.WriteLine(exc.Message);
+                }
+            }
+
+            public int this[int i]
+            {
+                get { return arr[i]; }
+                set { arr[i] = value; }
+            }
+
+            public int Sum
+            {
+                get
+                {
+                    int sum = 0;
+                    foreach (int i in arr)
+                        sum += i;
+                    return sum;
+                }
+            }
+            public void Inverse()
+            {
+                for(int i = 0; i < arr.Length; i++)
+                    arr[i] = -arr[i];
+            }
+            public void Multi(int n)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                    arr[i] *= n;
+            }
+            public int Max
+            {
+                get
+                {
+                    int max = arr[0];
+                    for (int i = 1; i < arr.Length; i++)
+                        if (arr[i] > max) max = arr[i];
+                    return max;
+                }
+            }
+            public int MaxCount
+            {
+                get
+                {
+                    int count = 0, max;
+                    max = this.Max;
+                    for (int i = 0; i < arr.Length; i++)
+                        if (arr[i] == max) count++;
+                    return count;
+                }
+            }
+            public void Output(string path)
+            {
+                StreamWriter sw = new StreamWriter(path);
+                sw.WriteLine(arr.Length);
+                for (int i = 0; i < arr.Length; i++)
+                    sw.WriteLine(arr[i]);
+                sw.Close();
+            }
+            public override string ToString()
+            {
+                string str = "";
+                foreach(int i in arr)
+                    str += i + " ";
+                return str;
+            }
         }
         #endregion
     }

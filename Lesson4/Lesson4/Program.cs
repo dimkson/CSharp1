@@ -169,8 +169,8 @@ namespace Lesson4
                     FC.Pause();
                     return;
                 }
-                Console.WriteLine("Неверный логин или пароль");
                 x++;
+                Console.WriteLine($"Неверный логин или пароль, попыток осталось: {3-x}");
             } while (x != 3);
             Console.WriteLine("Access Denied");
             FC.Pause();

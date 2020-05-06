@@ -10,7 +10,7 @@ namespace Lesson4
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02, Task03 };
+            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02, Task03, Task04 };
             Menu menu = new Menu(delMenus);
             menu.ChooseMenu();
         }
@@ -185,6 +185,160 @@ namespace Lesson4
                     return true;
             }
             return false;
+        }
+        #endregion
+        #region Задание 4
+        static void Task04()
+        {
+            MyDoubleArray myArr = new MyDoubleArray(3, 3);
+            Console.WriteLine(myArr);
+            Console.WriteLine("Sum: " + myArr.Sum());
+            Console.WriteLine("Sum(>): " + myArr.SumX(20));
+            Console.WriteLine("Min: " + myArr.Min);
+            Console.WriteLine("Max: " + myArr.Max);
+            myArr.MaxIndex(out int x, out int y);
+            Console.WriteLine($"Индекс максимального элемента: {x},{y}");
+            MyDoubleArray myArrayText = new MyDoubleArray("test3.txt");
+            Console.WriteLine(myArrayText);
+            myArrayText.OutPut("test4.txt");
+            FC.Pause();
+        }
+        class MyDoubleArray
+        {
+            int[,] arr;
+
+            public MyDoubleArray(int strSize, int stbSize)
+            {
+                arr = new int[strSize, stbSize];
+                Random rnd = new Random();
+                for (int i = 0; i < arr.GetLength(0); i++)
+                {
+                    for(int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        arr[i, j] = rnd.Next(0, 100);
+                    }
+                }
+            }
+            public MyDoubleArray(string path)
+            {
+                StreamReader sr = new StreamReader(path);
+                int x = int.Parse(sr.ReadLine());
+                int y = int.Parse(sr.ReadLine());
+                arr = new int[x, y];
+                for(int i = 0; i < arr.GetLength(0); i++)
+                {
+                    string str = sr.ReadLine();
+                    string[] strArr = str.Split(' ');
+
+                    for(int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        arr[i, j] = int.Parse(strArr[j]);
+                    }
+                }
+                sr.Close();
+            }
+
+            public int Sum()
+            {
+                int sum = 0;
+                for(int i = 0; i < arr.GetLength(0); i++)
+                {
+                    for(int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        sum += arr[i, j];
+                    }
+                }
+                return sum;
+            }
+            public int SumX(int x)
+            {
+                int sum = 0;
+                for(int i = 0; i < arr.GetLength(0); i++)
+                {
+                    for(int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        if (arr[i, j] > x) sum += arr[i, j];
+                    }
+                }
+                return sum;
+            }
+            public void MaxIndex(out int strIndex, out int stbIndex)
+            {
+                strIndex = 0;
+                stbIndex = 0;
+                int max = arr[strIndex, stbIndex];
+                for (int i = 0; i < arr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        if (arr[i, j] > max)
+                        {
+                            max = arr[i, j];
+                            strIndex = i;
+                            stbIndex = j;
+                        }
+                    }
+                }
+            }
+            public void OutPut(string path)
+            {
+                StreamWriter sw = new StreamWriter(path);
+                sw.WriteLine(arr.GetLength(0));
+                sw.WriteLine(arr.GetLength(1));
+                for(int i = 0; i < arr.GetLength(0); i++)
+                {
+                    for(int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        sw.Write(arr[i, j]);
+                        if (j != arr.GetLength(1) - 1) sw.Write(" ");
+                    }
+                    sw.Write("\r\n");
+                }
+                sw.Close();
+            }
+            public int Min
+            {
+                get
+                {
+                    int min = arr[0, 0];
+                    for(int i = 0; i < arr.GetLength(0); i++)
+                    {
+                        for(int j = 0; j < arr.GetLength(1); j++)
+                        {
+                            if (arr[i, j] < min) min = arr[i, j];
+                        }
+                    }
+                    return min;
+                }
+            }
+            public int Max
+            {
+                get
+                {
+                    int max = arr[0, 0];
+                    for (int i = 0; i < arr.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < arr.GetLength(1); j++)
+                        {
+                            if (arr[i, j] > max) max = arr[i, j];
+                        }
+                    }
+                    return max;
+                }
+            }
+            public override string ToString()
+            {
+                string str = "";
+                for(int i = 0; i < arr.GetLength(0); i++)
+                {
+                    for(int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        str += arr[i, j] + " ";
+                    }
+                    str += "\n";
+                }
+                return str;
+            }
         }
         #endregion
     }

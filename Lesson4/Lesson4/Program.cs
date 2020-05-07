@@ -108,8 +108,7 @@ namespace Lesson4
             }
             public void Inverse()
             {
-                for(int i = 0; i < arr.Length; i++)
-                    arr[i] = -arr[i];
+                Multi(-1);
             }
             public void Multi(int n)
             {

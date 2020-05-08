@@ -1,10 +1,8 @@
-﻿using System;
-using MenuLib;
-using FC = MenuLib.FastConsole;
-using System.Collections.Generic;
+﻿using MenuLib;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using FC = MenuLib.FastConsole;
 
 namespace Lesson5
 {
@@ -12,7 +10,7 @@ namespace Lesson5
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01 };
+            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02 };
             Menu menu = new Menu(delMenus);
             menu.ChooseMenu();
         }
@@ -45,6 +43,63 @@ namespace Lesson5
             {
                 Regex regex = new Regex(@"^\p{L}[\w]{1,9}$");
                 return regex.IsMatch(login);
+            }
+        }
+        #endregion
+        #region Задание 2
+        static void Task02()
+        {
+            MyString myString = new MyString(FC.Input("Введите строку"));
+            Console.WriteLine("Слова не длиннее 5 букв");
+            myString.Print(5);
+            myString.Delete('а');
+            myString.Max();
+            FC.Pause();
+        }
+        class MyString
+        {
+            private string str;
+            private string[] arrStr;
+            public MyString(string str)
+            {
+                this.str = str;
+                char[] arrCh = { ' ', '!', '.', ',', '?' };
+                arrStr = str.Split(arrCh, StringSplitOptions.RemoveEmptyEntries);
+            }
+
+            public void Print(int n)
+            {
+                foreach(string str in arrStr)
+                {
+                    if (str.Length <= n)
+                        Console.WriteLine(str);
+                }
+            }
+            public void Delete(char ch)
+            {
+                StringBuilder sb = new StringBuilder(str);
+                foreach(string str in arrStr)
+                {
+                    if (str[str.Length - 1] == ch)
+                        sb.Replace(str, "");
+                }
+                Console.WriteLine(sb.ToString());
+            }
+            public void Max()
+            {
+                string max = arrStr[0];
+                int count = 1;
+                foreach(string str in arrStr)
+                {
+                    if (str.Length > max.Length)
+                    {
+                        max = str;
+                        count = 1;
+                    }
+                    else if(str.Length == max.Length)
+                        count++;
+                }
+                Console.WriteLine($"Максимальный элемент {max}, встречается {count} раз");
             }
         }
         #endregion

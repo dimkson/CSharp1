@@ -10,7 +10,7 @@ namespace Lesson5
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02 };
+            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02, Task03 };
             Menu menu = new Menu(delMenus);
             menu.ChooseMenu();
         }
@@ -101,6 +101,34 @@ namespace Lesson5
                 }
                 Console.WriteLine($"Максимальный элемент {max}, встречается {count} раз");
             }
+        }
+        #endregion
+        #region Задание 3
+        static void Task03()
+        {
+            //Определить является ли одна строка перестановкой другой строки
+            string str1 = FC.Input("Введите первую строку").ToUpper();
+            string str2 = FC.Input("Введите вторую строку").ToUpper();
+            if (str1.Length == str2.Length)
+            {
+                StringBuilder sb = new StringBuilder(str2);
+                foreach (char ch1 in str1)
+                {
+                    //str2.Remove(str2.IndexOf(ch1), 1);
+                    for (int i = 0; i < sb.Length; i++)
+                    {
+                        if (ch1 == sb[i])
+                        {
+                            sb.Remove(i, 1);
+                            break;
+                        }
+                    }
+                }
+                Console.WriteLine("Строки " + (sb.Length == 0 ? "" : "не ") + "являются перестановкой друг друга");
+            }
+            else
+                Console.WriteLine("Строки имеют разную длину");
+            FC.Pause();
         }
         #endregion
     }

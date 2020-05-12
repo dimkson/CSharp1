@@ -1,5 +1,6 @@
 ﻿using MenuLib;
 using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using FC = MenuLib.FastConsole;
@@ -10,7 +11,7 @@ namespace Lesson5
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02, Task03 };
+            Menu.delMenu[] delMenus = new Menu.delMenu[] { Task01, Task02, Task03, Task04 };
             Menu menu = new Menu(delMenus);
             menu.ChooseMenu();
         }
@@ -129,6 +130,78 @@ namespace Lesson5
             else
                 Console.WriteLine("Строки имеют разную длину");
             FC.Pause();
+        }
+        #endregion
+        #region Задание 4
+        static void Task04()
+        {
+            //Считать данные из файла, высчитать средний балл, вывести 3х худших, плюс тех у кого одинаковый балл с худшими.
+            Students students = new Students("text.txt");
+            students.Sort();
+            students.Show();
+            FC.Pause();
+        }
+        struct Student
+        {
+            public string FIO { get; set; }
+            public double Mark { get; set; }
+            public override string ToString()
+            {
+                return FIO + " средний балл: " + Mark;
+            }
+        }
+
+        struct Students
+        {
+            Student[] students;
+            public Students(string Path)
+            {
+                StreamReader sr = new StreamReader(Path);
+                int count = int.Parse(sr.ReadLine());
+                students = new Student[count];
+                for(int i = 0; i < students.Length; i++)
+                {
+                    string[] arrStr = sr.ReadLine().Split(' ');
+                    students[i].FIO = arrStr[0] + " " + arrStr[1];
+                    students[i].Mark = (int.Parse(arrStr[2]) + int.Parse(arrStr[3]) + int.Parse(arrStr[4])) / 3.0;
+                }
+                sr.Close();
+
+            }
+            public void Sort()
+            {
+                for(int i = 0; i < students.Length; i++)
+                {
+                    for(int j = 0; j < students.Length - 1; j++)
+                    {
+                        if (students[j].Mark > students[j + 1].Mark)
+                        {
+                            Student student = students[j];
+                            students[j] = students[j + 1];
+                            students[j + 1] = student;
+                        }
+                    }
+                }
+            }
+
+            public void Show()
+            {
+                Console.WriteLine("Ученики с худшими баллами:");
+                Console.WriteLine(students[0]);
+                Console.WriteLine(students[1]);
+                Console.WriteLine(students[2]);
+                int i = 1;
+                while (students[2].Mark == students[2 + i].Mark)
+                {
+                    Console.WriteLine(students[2 + i++]);
+                }
+            }
+
+            public Student this[int i]
+            {
+                get { return students[i]; }
+                set { students[i] = value; }
+            }
         }
         #endregion
     }

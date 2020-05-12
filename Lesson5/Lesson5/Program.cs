@@ -64,7 +64,7 @@ namespace Lesson5
             public MyString(string str)
             {
                 this.str = str;
-                char[] arrCh = { ' ', '!', '.', ',', '?' };
+                char[] arrCh = { ' ' };
                 arrStr = str.Split(arrCh, StringSplitOptions.RemoveEmptyEntries);
             }
 
@@ -73,23 +73,23 @@ namespace Lesson5
                 foreach(string str in arrStr)
                 {
                     if (str.Length <= n)
-                        Console.WriteLine(str);
+                        Console.Write(str + " ");
                 }
             }
             public void Delete(char ch)
             {
-                StringBuilder sb = new StringBuilder(str);
+                Console.WriteLine();
                 foreach(string str in arrStr)
                 {
-                    if (str[str.Length - 1] == ch)
-                        sb.Replace(str, "");
+                    if (str[str.Length - 1] != ch)
+                        Console.Write(str + " ");
                 }
-                Console.WriteLine(sb.ToString());
             }
             public void Max()
             {
                 string max = arrStr[0];
-                int count = 1;
+                int count = 0;
+                Console.WriteLine();
                 foreach(string str in arrStr)
                 {
                     if (str.Length > max.Length)
@@ -100,7 +100,7 @@ namespace Lesson5
                     else if(str.Length == max.Length)
                         count++;
                 }
-                Console.WriteLine($"Максимальный элемент {max}, встречается {count} раз");
+                Console.WriteLine($"Максимальный элемент {max}, количество слов с таким же количеством букв: {count}");
             }
         }
         #endregion

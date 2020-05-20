@@ -12,14 +12,21 @@ namespace Lesson6
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenu = new Menu.delMenu[] {Task01};
+            Menu.delMenu[] delMenu = new Menu.delMenu[] {Task1};
             Menu menu = new Menu(delMenu);
             menu.ChooseMenu();
         }
-        static void Task01()
+        #region Задание 1
+        static void Task1()
         {
-
+            //Создать метод, который будет выводить значения ф-ий от a до b. Для передачи разных ф-ий использовать делегаты.
+            Console.WriteLine("Таблица функции A*x^2");
+            Task01.Table(Task01.MyMethod1, 10, -2, 2);
+            Console.WriteLine("Таблица функции A*sin(x)");
+            Task01.Table(Task01.MyMethod2, 10, -2, 2);
+            FC.Pause();
         }
+        #endregion
 
     }
 }

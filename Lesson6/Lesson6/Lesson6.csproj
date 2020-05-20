@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MenuLib">
-      <HintPath>..\..\..\..\Documents\C#\C# Level1\MenuLib\MenuLib\bin\Release\MenuLib.dll</HintPath>
+      <HintPath>..\..\MenuLib\MenuLib\bin\Release\MenuLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

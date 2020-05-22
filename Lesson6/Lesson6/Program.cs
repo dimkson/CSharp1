@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MenuLib;
+﻿using MenuLib;
+using System;
 using FC = MenuLib.FastConsole;
 
 namespace Lesson6
@@ -12,7 +8,7 @@ namespace Lesson6
     {
         static void Main(string[] args)
         {
-            Menu.delMenu[] delMenu = new Menu.delMenu[] { Task1, Task2 };
+            Menu.delMenu[] delMenu = new Menu.delMenu[] { Task1, Task2, Task3 };
             Menu menu = new Menu(delMenu);
             menu.ChooseMenu();
         }
@@ -27,7 +23,6 @@ namespace Lesson6
             FC.Pause();
         }
         #endregion
-
         #region Задание 2
         static void Task2()
         {
@@ -46,6 +41,18 @@ namespace Lesson6
                 Console.Write(db + " ");
             }
             FC.Pause();
+        }
+        #endregion
+        #region Задание 3
+        static void Task3()
+        {
+            /* Создать класс описывающий студента
+             * считать данные из файла
+             * подсчитать кол-во бакалавров и магистров, количество человек на 5 и 6 курсах 
+             * создать частотный массив студентов по курсам в возрасте от 18 до 20 лет 
+             * реализовать сортировки по различным параметрам 
+             * разработать единый метод подсчета количества студентов по различным параметрам выбора с помощью делегата и методов предикатов.*/
+            Task03.Task3();
         }
         #endregion
 

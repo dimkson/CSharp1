@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lesson7
 {
     class Doubler
     {
+        //Класс, реализует функционал игры "Удвоитель"
         public int Current { get; private set; }
         public int Max { get; private set; }
         public int Count { get; private set; }

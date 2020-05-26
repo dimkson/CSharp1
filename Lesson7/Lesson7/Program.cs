@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -22,7 +18,6 @@ namespace Lesson7
         {
             InitializeComponent();
             doubler = new Doubler();
-            tbMax.Text = doubler.Max.ToString();
             UpdateInfo();
         }
 
@@ -61,14 +56,14 @@ namespace Lesson7
             //
             this.bReset.Name = "bReset";
             this.bReset.Text = "Сброс";
-            this.bReset.Location = new Point(10, 110);
+            this.bReset.Location = new Point(10, 150);
             this.bReset.Click += BReset_Click;
             //
             // bCancel
             //
             this.bCancel.Name = "bCancel";
             this.bCancel.Text = "Отменить";
-            this.bCancel.Location = new Point(10, 150);
+            this.bCancel.Location = new Point(10, 110);
             this.bCancel.Click += BCancel_Click;
             //
             // lblCurrent
@@ -82,6 +77,7 @@ namespace Lesson7
             this.tbMax.Name = "tbMax";
             this.tbMax.Text = "";
             this.tbMax.Location = new Point(120, 70);
+            this.tbMax.ReadOnly = true;
             //
             // lblCount
             //
@@ -109,11 +105,10 @@ namespace Lesson7
             //
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += TsmiExit_Click;
-            
             // 
             // fDouble
             // 
-            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.ClientSize = new System.Drawing.Size(233, 188);
             this.Controls.AddRange(new Control[] { bPlus, bMulti, bReset, bCancel,
                 lblCurrent, tbMax, lblCount, menuStrip });
             this.MainMenuStrip = this.menuStrip;
@@ -128,43 +123,60 @@ namespace Lesson7
 
         private void BCancel_Click(object sender, EventArgs e)
         {
+            //Отмена хода
             doubler.Cancel();
             UpdateInfo();
         }
 
         private void TsmiExit_Click(object sender, EventArgs e)
         {
+            //Выход из программы
             this.Close();
         }
 
         private void TsmiNewGame_Click(object sender, EventArgs e)
         {
+            //Начать новую игру
             doubler = new Doubler();
-            tbMax.Text = doubler.Max.ToString();
             UpdateInfo();
         }
 
         private void BReset_Click(object sender, EventArgs e)
         {
+            //Начать игру заново
             doubler.Reset();
             UpdateInfo();
         }
 
         private void BMulti_Click(object sender, EventArgs e)
         {
+            //Умножить текущее значение на 2
             doubler.Multi();
             UpdateInfo();
         }
 
         private void BPlus_Click(object sender, EventArgs e)
         {
+            //Прибавить к текущему значению 1
             doubler.Plus();
             UpdateInfo();
         }
         private void UpdateInfo()
         {
+            //Обновить информацию на форме
             this.lblCurrent.Text = doubler.Current.ToString();
-            this.lblCount.Text = $"{doubler.Count.ToString()} из {doubler.MinimumStep}";
+            this.lblCount.Text = $"Шаг: {doubler.Count.ToString()} из {doubler.MinimumStep}";
+            tbMax.Text = doubler.Max.ToString();
+            bPlus.Enabled = bMulti.Enabled = (doubler.Count != doubler.MinimumStep);
+            bReset.Enabled = bCancel.Enabled = (doubler.Count != 0);
+            if (doubler.Current == doubler.Max)
+            {
+                MessageBox.Show("Вы выиграли!", "Поздравляем!");
+                doubler = new Doubler();
+                tbMax.Text = doubler.Max.ToString();
+                UpdateInfo();
+            }
+
         }
     }
 

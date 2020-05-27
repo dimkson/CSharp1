@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1022
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson7", "Lesson7\Lesson7.csproj", "{C6E72CF9-6998-4CC9-AE18-EABEF924C89C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessNumber", "GuessNumber\GuessNumber.csproj", "{04E21B15-B56A-4648-9ACA-51FB29471580}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C6E72CF9-6998-4CC9-AE18-EABEF924C89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6E72CF9-6998-4CC9-AE18-EABEF924C89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6E72CF9-6998-4CC9-AE18-EABEF924C89C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E21B15-B56A-4648-9ACA-51FB29471580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E21B15-B56A-4648-9ACA-51FB29471580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E21B15-B56A-4648-9ACA-51FB29471580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E21B15-B56A-4648-9ACA-51FB29471580}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

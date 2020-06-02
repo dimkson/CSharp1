@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Lesson8
 {
-    public partial class Form1 : Form
+    public partial class fBelieve : Form
     {
-        public Form1()
+        public fBelieve()
         {
             InitializeComponent();
+        }
+
+        private void tsmiExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

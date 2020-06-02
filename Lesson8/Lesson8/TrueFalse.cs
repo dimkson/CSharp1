@@ -6,10 +6,11 @@ using System.IO;
 namespace Lesson8
 {
     [Serializable]
-    class Question
+    public class Question
     {
         string text;
         bool trueFalse;
+
         public string Text
         {
             get { return text; }
@@ -40,6 +41,11 @@ namespace Lesson8
             get { return fileName; }
             set { fileName = value; }
         }
+        public List<Question> List
+        {
+            get { return list; }
+            set { list = value; }
+        }
 
         public TrueFalse(string fileName)
         {
@@ -50,14 +56,14 @@ namespace Lesson8
         public void Save()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-            FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             serializer.Serialize(fs, list);
             fs.Close();
         }
         public void Load()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Write);
+            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             list = (List<Question>)serializer.Deserialize(fs);
             fs.Close();
         }

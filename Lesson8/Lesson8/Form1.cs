@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lesson8
@@ -14,8 +8,10 @@ namespace Lesson8
     {
         TrueFalse database;
         BindingSource binding;
+        Game game;
         bool changeBase;
         bool newFile;
+        bool fileOpen;
 
         public fBelieve()
         {
@@ -24,52 +20,78 @@ namespace Lesson8
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
+            //Запрос на сохранение изменений перед выходом
             if (changeBase)
-            {
-                if(MessageBox.Show("Сохранить изменения?", "Сохранение", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    tsmiSave.PerformClick();
-                }
+            { 
+                DialogResult result = MessageBox.Show("Сохранить изменения?", "Сохранение", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) tsmiSave.PerformClick();
+                else if (result == DialogResult.Cancel) return;
             }
             this.Close();
         }
 
         private void tsmiNew_Click(object sender, EventArgs e)
         {
+            //Создание новый базы данных
+            if (changeBase)
+            {
+                DialogResult result = MessageBox.Show("Сохранить изменения?", "Сохранение", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) tsmiSave.PerformClick();
+                else if (result == DialogResult.Cancel) return;
+            }
             database = new TrueFalse(string.Empty);
+            Binding();
+            tbText.Text = string.Empty;
+            cbTrueFalse.Checked = false;
+            tabPage1.Text = "Новая БД*";
+            newFile = true;
+            changeBase = true;
+            fileOpen = true;
+        }
+
+        private void Binding()
+        {
+            //Создание связи между элементами формы
             binding = new BindingSource(database, "List");
             bindingNavigator.BindingSource = binding;
             dataGridView.DataSource = binding;
             tbText.Enabled = cbTrueFalse.Enabled = true;
+            tbText.DataBindings.Clear();
             tbText.DataBindings.Add("Text", binding, "Text");
-            cbTrueFalse.DataBindings.Add("Checked", binding, "TrueFalse");
-            bindingNavigatorAddNewItem.PerformClick();
-            tabPage1.Text = "Новый файл*";
-            newFile = true;
-            changeBase = true;
+            cbTrueFalse.DataBindings.Clear();
+            cbTrueFalse.DataBindings.Add("Checked", binding, "TrueFalse", false, DataSourceUpdateMode.OnPropertyChanged);
+            tbGame.DataBindings.Clear();
+            tbGame.DataBindings.Add("Text", binding, "Text", false, DataSourceUpdateMode.OnPropertyChanged);
+            cbAnswer.DataBindings.Clear();
+            cbAnswer.DataBindings.Add("Checked", binding, "TrueFalse", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void tsmiOpen_Click(object sender, EventArgs e)
         {
+            //Открытие существующего файла БД
+            if (changeBase)
+            {
+                DialogResult result = MessageBox.Show("Сохранить изменения?", "Сохранение", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) tsmiSave.PerformClick();
+                else if (result == DialogResult.Cancel) return;
+            }
             OpenFileDialog openFile = new OpenFileDialog();
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 database = new TrueFalse(openFile.FileName);
                 database.Load();
-                binding = new BindingSource(database, "List");
-                bindingNavigator.BindingSource = binding;
-                dataGridView.DataSource = binding;
-                tbText.Enabled = cbTrueFalse.Enabled = true;
-                tbText.DataBindings.Add("Text", binding, "Text");
-                cbTrueFalse.DataBindings.Add("Checked", binding, "TrueFalse");
+                Binding();
                 tabPage1.Text = Path.GetFileName(openFile.FileName);
                 newFile = false;
                 changeBase = false;
+                fileOpen = true;
             }
         }
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
+            //Сохранение текущего файла БД, если файл новый, то запускается метод SaveAs
+            if (!fileOpen) return;
             if (newFile)
             {
                 tsmiSaveAs.PerformClick();
@@ -82,6 +104,8 @@ namespace Lesson8
 
         private void tsmiSaveAs_Click(object sender, EventArgs e)
         {
+            //Сохранить КАК
+            if (!fileOpen) return;
             SaveFileDialog saveFile = new SaveFileDialog();
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
@@ -95,11 +119,60 @@ namespace Lesson8
 
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            //Добавление "*" к имени файла при изменении БД
             if (!changeBase)
             {
                 tabPage1.Text += "*";
                 changeBase = true;
             }
+        }
+
+        private void bBelieve_Click(object sender, EventArgs e)
+        {
+            //Верю
+            Check(true);
+        }
+        private void bNotBelieve_Click(object sender, EventArgs e)
+        {
+            //Не верю
+            Check(false);
+        }
+        private void Check(bool check)
+        {
+            //Проверка ответа
+            if (check == cbAnswer.Checked)
+            {
+                game.Increase();
+            }
+            else
+            {
+                game.Step();
+            }
+            label1.Text = "Очки: " + game.Count.ToString();
+            bindingNavigatorMoveNextItem.PerformClick();
+            if (game.Finish)
+            {
+                tbGame.Enabled = bBelieve.Enabled = bNotBelieve.Enabled = false;
+                MessageBox.Show($"Очков набрано: {game.Count} ");
+            }
+        }
+
+        private void tsmiNewGame_Click(object sender, EventArgs e)
+        {
+            //Начать новую игру
+            if (!fileOpen)
+            {
+                MessageBox.Show("Необходимо открыть файл с вопросами!","Внимание");
+                return;
+            }
+            if (database.List.Count == 0)
+            {
+                MessageBox.Show("База данных должна содеражать хотя бы один вопрос!","Внимание");
+                return;
+            }
+            game = new Game(database.List.Count);
+            label1.Text = "Очки: " + game.Count.ToString();
+            tbGame.Enabled = bBelieve.Enabled = bNotBelieve.Enabled = true;
         }
     }
 }

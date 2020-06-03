@@ -24,6 +24,13 @@ namespace Lesson8
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
+            if (changeBase)
+            {
+                if(MessageBox.Show("Сохранить изменения?", "Сохранение", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    tsmiSave.PerformClick();
+                }
+            }
             this.Close();
         }
 
@@ -33,6 +40,10 @@ namespace Lesson8
             binding = new BindingSource(database, "List");
             bindingNavigator.BindingSource = binding;
             dataGridView.DataSource = binding;
+            tbText.Enabled = cbTrueFalse.Enabled = true;
+            tbText.DataBindings.Add("Text", binding, "Text");
+            cbTrueFalse.DataBindings.Add("Checked", binding, "TrueFalse");
+            bindingNavigatorAddNewItem.PerformClick();
             tabPage1.Text = "Новый файл*";
             newFile = true;
             changeBase = true;
@@ -48,6 +59,9 @@ namespace Lesson8
                 binding = new BindingSource(database, "List");
                 bindingNavigator.BindingSource = binding;
                 dataGridView.DataSource = binding;
+                tbText.Enabled = cbTrueFalse.Enabled = true;
+                tbText.DataBindings.Add("Text", binding, "Text");
+                cbTrueFalse.DataBindings.Add("Checked", binding, "TrueFalse");
                 tabPage1.Text = Path.GetFileName(openFile.FileName);
                 newFile = false;
                 changeBase = false;

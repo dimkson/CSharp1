@@ -153,7 +153,7 @@ namespace Lesson8
             if (game.Finish)
             {
                 tbGame.Enabled = bBelieve.Enabled = bNotBelieve.Enabled = false;
-                MessageBox.Show($"Очков набрано: {game.Count} ");
+                MessageBox.Show($"Очков набрано: {game.Count} ", "Игра закончена!");
             }
         }
 
@@ -173,6 +173,20 @@ namespace Lesson8
             game = new Game(database.List.Count);
             label1.Text = "Очки: " + game.Count.ToString();
             tbGame.Enabled = bBelieve.Enabled = bNotBelieve.Enabled = true;
+        }
+
+        private void dataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (MessageBox.Show("Удалить строку?", "Предупреждение", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void tsmiAbout_Click(object sender, EventArgs e)
+        {
+            fAbout fAbout = new fAbout();
+            fAbout.ShowDialog();
         }
     }
 }

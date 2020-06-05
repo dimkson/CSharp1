@@ -37,7 +37,7 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNewGame = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.справкаToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsAbout = new System.Windows.Forms.ToolStripButton();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +50,7 @@
             this.правкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewGame = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.опрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -95,7 +95,7 @@
             this.toolStripSeparator,
             this.tsbNewGame,
             this.toolStripSeparator1,
-            this.справкаToolStripButton});
+            this.tsAbout});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(688, 27);
@@ -140,8 +140,7 @@
             // tsbNewGame
             // 
             this.tsbNewGame.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            
-            this.tsbNewGame.Image = ((System.Drawing.Image)(resources.GetObject("tsmiNewGame.Image")));
+            this.tsbNewGame.Image = ((System.Drawing.Image)(resources.GetObject("tsbNewGame.Image")));
             this.tsbNewGame.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNewGame.Name = "tsbNewGame";
             this.tsbNewGame.Size = new System.Drawing.Size(24, 24);
@@ -153,14 +152,15 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // справкаToolStripButton
+            // tsAbout
             // 
-            this.справкаToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.справкаToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("справкаToolStripButton.Image")));
-            this.справкаToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.справкаToolStripButton.Name = "справкаToolStripButton";
-            this.справкаToolStripButton.Size = new System.Drawing.Size(24, 24);
-            this.справкаToolStripButton.Text = "Спр&авка";
+            this.tsAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsAbout.Image = ((System.Drawing.Image)(resources.GetObject("tsAbout.Image")));
+            this.tsAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsAbout.Name = "tsAbout";
+            this.tsAbout.Size = new System.Drawing.Size(24, 24);
+            this.tsAbout.Text = "Спр&авка";
+            this.tsAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // menuStrip
             // 
@@ -196,7 +196,7 @@
             this.tsmiNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmiNew.Name = "tsmiNew";
             this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tsmiNew.Size = new System.Drawing.Size(172, 22);
+            this.tsmiNew.Size = new System.Drawing.Size(184, 26);
             this.tsmiNew.Text = "&Создать";
             this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
             // 
@@ -206,14 +206,14 @@
             this.tsmiOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmiOpen.Name = "tsmiOpen";
             this.tsmiOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tsmiOpen.Size = new System.Drawing.Size(172, 22);
+            this.tsmiOpen.Size = new System.Drawing.Size(184, 26);
             this.tsmiOpen.Text = "&Открыть";
             this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
             // 
             // tsmiSave
             // 
@@ -221,26 +221,26 @@
             this.tsmiSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmiSave.Name = "tsmiSave";
             this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiSave.Size = new System.Drawing.Size(172, 22);
+            this.tsmiSave.Size = new System.Drawing.Size(184, 26);
             this.tsmiSave.Text = "&Сохранить";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsmiSaveAs
             // 
             this.tsmiSaveAs.Name = "tsmiSaveAs";
-            this.tsmiSaveAs.Size = new System.Drawing.Size(172, 22);
+            this.tsmiSaveAs.Size = new System.Drawing.Size(184, 26);
             this.tsmiSaveAs.Text = "Сохранить &как";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(181, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(172, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(184, 26);
             this.tsmiExit.Text = "Вы&ход";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -263,16 +263,17 @@
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.опрограммеToolStripMenuItem});
+            this.tsmiAbout});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Спра&вка";
             // 
-            // опрограммеToolStripMenuItem
+            // tsmiAbout
             // 
-            this.опрограммеToolStripMenuItem.Name = "опрограммеToolStripMenuItem";
-            this.опрограммеToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.опрограммеToolStripMenuItem.Text = "&О программе...";
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAbout.Text = "&О программе...";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // statusStrip1
             // 
@@ -384,6 +385,7 @@
             // 
             // dataGridView
             // 
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(2, 60);
@@ -393,6 +395,7 @@
             this.dataGridView.Size = new System.Drawing.Size(676, 248);
             this.dataGridView.TabIndex = 3;
             this.dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
+            this.dataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView_UserDeletingRow);
             // 
             // bindingNavigator
             // 
@@ -541,6 +544,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "fBelieve";
@@ -570,7 +574,7 @@
         private System.Windows.Forms.ToolStripButton tsbOpen;
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton справкаToolStripButton;
+        private System.Windows.Forms.ToolStripButton tsAbout;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiNew;
@@ -583,7 +587,7 @@
         private System.Windows.Forms.ToolStripMenuItem правкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewGame;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem опрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;

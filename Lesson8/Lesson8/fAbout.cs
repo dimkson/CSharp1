@@ -5,6 +5,7 @@ namespace Lesson8
 {
     public partial class fAbout : Form
     {
+        //Форма "О прогамме"
         public fAbout()
         {
             InitializeComponent();

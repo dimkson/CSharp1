@@ -196,7 +196,7 @@
             this.tsmiNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmiNew.Name = "tsmiNew";
             this.tsmiNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tsmiNew.Size = new System.Drawing.Size(184, 26);
+            this.tsmiNew.Size = new System.Drawing.Size(172, 22);
             this.tsmiNew.Text = "&Создать";
             this.tsmiNew.Click += new System.EventHandler(this.tsmiNew_Click);
             // 
@@ -206,14 +206,14 @@
             this.tsmiOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmiOpen.Name = "tsmiOpen";
             this.tsmiOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tsmiOpen.Size = new System.Drawing.Size(184, 26);
+            this.tsmiOpen.Size = new System.Drawing.Size(172, 22);
             this.tsmiOpen.Text = "&Открыть";
             this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
             // 
             // tsmiSave
             // 
@@ -221,26 +221,26 @@
             this.tsmiSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmiSave.Name = "tsmiSave";
             this.tsmiSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiSave.Size = new System.Drawing.Size(184, 26);
+            this.tsmiSave.Size = new System.Drawing.Size(172, 22);
             this.tsmiSave.Text = "&Сохранить";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsmiSaveAs
             // 
             this.tsmiSaveAs.Name = "tsmiSaveAs";
-            this.tsmiSaveAs.Size = new System.Drawing.Size(184, 26);
+            this.tsmiSaveAs.Size = new System.Drawing.Size(172, 22);
             this.tsmiSaveAs.Text = "Сохранить &как";
             this.tsmiSaveAs.Click += new System.EventHandler(this.tsmiSaveAs_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(184, 26);
+            this.tsmiExit.Size = new System.Drawing.Size(172, 22);
             this.tsmiExit.Text = "Вы&ход";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -256,7 +256,7 @@
             // 
             this.tsmiNewGame.Image = ((System.Drawing.Image)(resources.GetObject("tsmiNewGame.Image")));
             this.tsmiNewGame.Name = "tsmiNewGame";
-            this.tsmiNewGame.Size = new System.Drawing.Size(184, 26);
+            this.tsmiNewGame.Size = new System.Drawing.Size(136, 22);
             this.tsmiNewGame.Text = "&Новая игра";
             this.tsmiNewGame.Click += new System.EventHandler(this.tsmiNewGame_Click);
             // 
@@ -271,7 +271,7 @@
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(158, 22);
             this.tsmiAbout.Text = "&О программе...";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -549,6 +549,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "fBelieve";
             this.Text = "Верю - не верю";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fBelieve_FormClosed);
+            this.Load += new System.EventHandler(this.fBelieve_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip.ResumeLayout(false);

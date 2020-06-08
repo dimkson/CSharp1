@@ -185,8 +185,31 @@ namespace Lesson8
 
         private void tsmiAbout_Click(object sender, EventArgs e)
         {
+            //Запуск формы "О программе"
             fAbout fAbout = new fAbout();
             fAbout.ShowDialog();
+        }
+
+        private void fBelieve_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Сохранить путь открытого файла
+            Properties.Settings.Default.LastPath = database?.FileName;
+            Properties.Settings.Default.Save();
+        }
+
+        private void fBelieve_Load(object sender, EventArgs e)
+        {
+            //Загрузить последний открытый файл
+            if (Properties.Settings.Default.LastPath != string.Empty)
+            {
+                database = new TrueFalse(Properties.Settings.Default.LastPath);
+                database.Load();
+                Binding();
+                tabPage1.Text = Path.GetFileName(Properties.Settings.Default.LastPath);
+                newFile = false;
+                changeBase = false;
+                fileOpen = true;
+            }
         }
     }
 }

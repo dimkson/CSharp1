@@ -34,7 +34,7 @@
             // 
             // bOK
             // 
-            this.bOK.Location = new System.Drawing.Point(126, 104);
+            this.bOK.Location = new System.Drawing.Point(148, 104);
             this.bOK.Name = "bOK";
             this.bOK.Size = new System.Drawing.Size(75, 28);
             this.bOK.TabIndex = 0;
@@ -47,16 +47,16 @@
             this.lblText.AutoSize = true;
             this.lblText.Location = new System.Drawing.Point(12, 9);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(305, 78);
+            this.lblText.Size = new System.Drawing.Size(349, 78);
             this.lblText.TabIndex = 1;
-            this.lblText.Text = "Игра \"Верю - не верю\"\r\n\r\nРазработчик: Быков Дмитрий\r\n\r\nДля игры необходимо открыт" +
-    "ь xml файл с базой вопросов\r\nи запустить новую игру.";
+            this.lblText.Text = "Игра \"Верю - не верю\"\r\n\r\nРазработчик: Быков Дмитрий\r\n\r\nДля запуска игры необходим" +
+    "о открыть xml файл с базой вопросов\r\nи запустить новую игру.";
             // 
             // fAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 148);
+            this.ClientSize = new System.Drawing.Size(370, 148);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.bOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

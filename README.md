@@ -1,4 +1,4 @@
-# Charp1
+# CSharp1
 GeekBrains C# Level 1
 
 Lesson 1 - Введение. Базовые типы данных. Консоль. Классы и методы.

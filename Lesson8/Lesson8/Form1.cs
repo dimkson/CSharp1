@@ -76,6 +76,7 @@ namespace Lesson8
                 else if (result == DialogResult.Cancel) return;
             }
             OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "XML Files|*.xml";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 database = new TrueFalse(openFile.FileName);
@@ -107,6 +108,7 @@ namespace Lesson8
             //Сохранить КАК
             if (!fileOpen) return;
             SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "XML Files|*.xml";
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 database.FileName = saveFile.FileName;

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Lesson6
 {
-    class Student
+    [Serializable]
+    public class Student
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -29,6 +31,7 @@ namespace Lesson6
             Group = group;
             City = city;
         }
+        public Student() { }
 
         public static int Counter(List<Student> students, Predicate<Student> predicate)
         {
@@ -58,6 +61,24 @@ namespace Lesson6
         {
             return student.Course < 5;
         }
+
+        static void Save(List<Student> list, string path)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Student>));
+            FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+            xmlSerializer.Serialize(fs, list);
+            fs.Close();
+        }
+        static List<Student> Load(string path)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Student>));
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            List<Student> list = new List<Student>();
+            list = (List<Student>)xmlSerializer.Deserialize(fs);
+            fs.Close();
+            return list;
+        }
+
         public static void Task3()
         {
             int bachelor = 0;
@@ -91,6 +112,8 @@ namespace Lesson6
                 }
             }
             sr.Close();
+            Save(list, "student.xml");
+            list = Load("student.xml");
             bachelor = Student.Counter(list, IsBachelor);
             Console.WriteLine("Всего студентов: " + list.Count);
             Console.WriteLine("Всего бакалавров: " + bachelor);

@@ -4,16 +4,19 @@ namespace MenuLib
 {
     public class Menu
     {
+        //Класс создает консольное меню на основе массива делегатов и запускает выбранный метод.
         public delegate void delMenu();
         private delMenu[] delMenus;
 
         public Menu(delMenu[] delegates)
         {
+            //Конструктор принимает массив делегатов
             delMenus = delegates;
         }
 
         public void ChooseMenu()
         {
+            //Создаем меню и запускаем выбранный метод
             int num;
             do
             {
@@ -23,7 +26,7 @@ namespace MenuLib
                 {
                     Console.WriteLine(num++ + " - " + del.Method.Name);
                 }
-                Console.WriteLine("Для выхода из меню нажмите 10");
+                Console.WriteLine("Для выхода из меню нажмите 0");
                 try
                 {
                     Int32.TryParse(Console.ReadLine(), out num);
@@ -34,12 +37,13 @@ namespace MenuLib
                 {
                     Console.WriteLine(e.Message);
                 }
-            } while (num != 10);
+            } while (num != 0);
         }
     }
 
     public static class FastConsole
     {
+        //Класс содержит методы для ускорения работы с консолью.
         public static void Input(string str, out int num)
         {
             Console.WriteLine(str);

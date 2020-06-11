@@ -29,7 +29,12 @@ namespace MenuLib
                 Console.WriteLine("Для выхода из меню нажмите 0");
                 try
                 {
-                    Int32.TryParse(Console.ReadLine(), out num);
+                    bool b;
+                    do
+                    {
+                        b = int.TryParse(Console.ReadLine(), out num);
+                        if (!b) Console.WriteLine("Ошибка ввода данных, введите целое число!");
+                    } while (!b);
                     delMenus[num - 1]();
                     Console.Clear();
                 }
